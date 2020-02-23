@@ -1,4 +1,6 @@
 import pefile as pf
+import os
+import glob
 
 from fileSig import file_Sig
 from importExport import import_Export
@@ -8,7 +10,15 @@ from unpack import unpack
 from findStrings import find_Strings
 from networkAbility import network_Ability
 
+#Scan dir for exe's, and print the results to be sure.
 def main():
+    #Double forward slashes needed for escape sequence
+    for filename in glob.iglob('C:\\Users\\ur_bad_malware_here\\*.exe'):
+        pe = pf.PE(filename)
+        pe.parse_data_directories()
+        print('%x' % pe.FILE_HEADER.NumberOfSections)
+    
+
     #Establish directory with malware files and assign to object.
     #Easiest option is to hardcode directory, but could also scan for for
     #directories labeled "malware".
