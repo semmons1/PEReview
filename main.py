@@ -10,26 +10,31 @@ from unpack import unpack
 from findStrings import find_Strings
 from networkAbility import network_Ability
 
-#Scan dir for exe's, and print the results to be sure.
+'''
+The main function in this file has the following tasks:
+@currentWorkingDir, the object that your current working directory is assigned to. 
+@pe will pass file/directory information to relevant file analysis functions.
+This tool should be in the same directory as potentially malicious executables.
+This allows for the OS module to scan your directory for all .exe files.
+This function should also contain checks (conditional, try blocks) for files that don't exist or are malformed.
+After checks, parse the data directories, and ship them off to relevant functions. These functions will 
+display relevant information about each executable being examined.
+'''
 def main():
-    #Double forward slashes needed for escape sequence
-    for filename in glob.iglob('C:\\Users\\ur_bad_malware_here\\*.exe'):
-        pe = pf.PE(filename)
-        pe.parse_data_directories()
-        print('%x' % pe.FILE_HEADER.NumberOfSections)
+
+    currentWorkingDir = os.getcwd()
+
+    for root, subdir, files in os.walk(currentWorkingDir):
+        for file in files:
+            if file.endswith(".exe"):
+                pe = pf.PE(file)
+                pe.parse_data_directories()
+                import_Export(pe, file)
+                packed_Status(pe, file)
     
 
-    #Establish directory with malware files and assign to object.
-    #Easiest option is to hardcode directory, but could also scan for for
-    #directories labeled "malware".
-
-    #use this new object as an argument to be passed to the following function calls, potential
-    #return values will be listed in the function file.
-
     #fileSig(dir)
-    #importExport(dir)
     #compileTime(dir)
-    #packedStatus(dir)
     #based on the result of packedStatus/which packing manager is needed -> unpack(dir)
     #findStrings(dir) -> will need to identify the most out of these other functions, 
     # will likely need to return many strings. 
@@ -37,7 +42,6 @@ def main():
     #
     #Beyond these function calls, main should be fairly minimal, with perhaps some additional
     #error catch blocks included after function calls.
-    print("Main is live.")
     return
 
 if __name__ == '__main__':
