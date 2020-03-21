@@ -5,22 +5,29 @@ While it is not common, some executables will have an export directory, and this
 The "b" before most strings in the given output denotes that this is bytecode information.
 '''
 def import_Export(portableExe, fileName):
+    contents = ""
 
     if (hasattr(portableExe, "DIRECTORY_ENTRY_IMPORT")):
-        print(fileName, "has the following imports: \n")
+        contents += (fileName + " has the following dll's associated with it: <br />")
         for entry in portableExe.DIRECTORY_ENTRY_IMPORT:
-            print(entry.dll)
+            contents += str(entry.dll, 'utf-8')
+            contents += str("<br /> This dll contains the following imports: <br />")
             for imp in entry.imports:
-                print('\t', hex(imp.address), imp.name)
+                tempAddress = str(hex(imp.address))
+                tempName = str(imp.name, 'utf-8')
+                contents += str(tempAddress + " -> " + tempName + "<br />")
     else:
-        print(fileName, "does not contain any detectable imports. \n")
+        contents += str(fileName + " does not contain any detectable imports. <br />")
 
     if (hasattr(portableExe, "DIRECTORY_ENTRY_EXPORT")):
-        print(fileName, "has the following exports: \n")
-        for exp in portableExe.DIRECTORY_ENTRY_EXPORT:
-            print(hex(portableExe.OPTIONAL_HEADER.ImageBase + exp.address), exp.name, exp.ordinal)
+        contents += (fileName + " has the following exports: <br />")
+        for exp in portableExe.DIRECTORY_ENTRY_EXPORT.symbols:
+            tempAddressExp = str(hex(portableExe.OPTIONAL_HEADER.ImageBase + exp.address))
+            tempNameExp = str(exp.name, 'utf-8')
+            tempOrdinal = str(exp.ordinal)
+            contents += str(tempAddressExp + " -> " + tempNameExp + " ordered @ " + tempOrdinal + "<br />")
 
     else:
-       print(fileName, "does not contain any detectable exports. \n")
+       contents += str(fileName + " does not contain any detectable exports. <br />")
     
-    return
+    return contents

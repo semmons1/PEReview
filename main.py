@@ -1,8 +1,12 @@
 import pefile as pf
 import os
-import glob
+import tkinter as tk 
+import subprocess
 
+from tkinter import Tk, StringVar
+from tkinter import filedialog
 from fileSig import file_Sig
+from wrapResults import wrap_Results
 from importExport import import_Export
 from compileTime import compile_Time
 from packedStatus import packed_Status
@@ -21,18 +25,38 @@ After checks, parse the data directories, and ship them off to relevant function
 display relevant information about each executable being examined.
 '''
 def main():
+    impExpData = ""
+    packedStatusData = ""
 
-    currentWorkingDir = os.getcwd()
+    #Open template file in original package directory first,
+    #before switching to target directory
 
-    for root, subdir, files in os.walk(currentWorkingDir):
+    with open('cssTemplate.txt', 'r') as templateFile:
+        wrapper = templateFile.read()
+
+    # This section allows the user to change the working directory
+    # with a simple GUI. Ideally, the user will be in a Windows environment.
+    # However, this should accept Linux and Mac folder paths with a slight modification 
+    # to the 'initialdir' option.
+
+    root = Tk()
+    root.withdraw()
+    folderPath = StringVar()
+    source = filedialog.askdirectory(initialdir = "/", title = "Select Desired Directory")
+    folderPath.set(source)
+    sourcePath = folderPath.get()
+    os.chdir(sourcePath)
+
+    for root, subdir, files in os.walk(sourcePath):
         for file in files:
             if file.endswith(".exe"):
                 pe = pf.PE(file)
                 pe.parse_data_directories()
-                import_Export(pe, file)
-                packed_Status(pe, file)
+                impExpData += import_Export(pe, file)
+                packedStatusData += packed_Status(pe, file)
     
 
+    
     #fileSig(dir)
     #compileTime(dir)
     #based on the result of packedStatus/which packing manager is needed -> unpack(dir)
@@ -42,8 +66,11 @@ def main():
     #
     #Beyond these function calls, main should be fairly minimal, with perhaps some additional
     #error catch blocks included after function calls.
+
+    #This function is subject to change, and will take data returned
+    #from each module/function to be wrapped in a html file.
+    wrap_Results("Report", impExpData, packedStatusData, wrapper)
     return
 
 if __name__ == '__main__':
     main()
-  
