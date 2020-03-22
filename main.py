@@ -27,6 +27,7 @@ display relevant information about each executable being examined.
 def main():
     impExpData = ""
     packedStatusData = ""
+    compileTime = ""
 
     #Open template file in original package directory first,
     #before switching to target directory
