@@ -2,18 +2,35 @@ import pefile
 import re
 
 '''
-fileName -> name of file in project folder
-sectionNum -> the section's index number
+RETURNS STRINGS FROM A SINGLE SECTION
+    fileName -> name of file in project folder
+    sectionNum -> the section's index number
 '''
-def getStrings(fileName, sectionNum):
+def getSectionStrings(fileName, sectionNum):
     pe = pefile.PE(fileName)   
     chars = str(pe.sections[sectionNum].get_data()[:])
     char_array = ""
     for c in chars: char_array += c
-    print(re.sub(r'\\x\w{2}', '', char_array))
-    return
+    secStrs = re.sub(r'\\x\w{2}', '', char_array)
+    #print(secStrs)
+    return secStrs
 
-# Example: Make sure you have a copy of the .dll
-#          file from 7zip application for this 
-#          to work correctly, or use any pe file!
-# getStrings("7z.dll", 1)
+'''
+RETURNS STRINGS FROM ALL SECTIONS
+    fileName -> name of file in project folder
+'''
+def getAllStrings(fileName):
+    pe = pefile.PE(fileName)   
+    chars = ""
+    for section in pe.sections:
+        chars += str(section.get_data()[:])
+    char_array = ""
+    for c in chars: 
+        char_array += c
+    fileStrs = re.sub(r'\\x\w{2}', '', char_array)
+    #print(fileStrs)
+    return fileStrs
+
+#example
+#getSectionStrings("7z.dll", 1)
+#getAllStrings("7z.dll")
