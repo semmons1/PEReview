@@ -5,10 +5,10 @@ import re
 fileName -> name of file in project folder
 sectionNum -> the section's index number
 filterList -> list of raw strings to filter out
-isSplit -> split string in list of strings by whitespace
+isSplit -> split string in list of strings by whitespace if True
 '''
 def getSectionStrings(fileName, sectionNum, filterList, isSplit):
-    pe = pefile.PE(fileName)  
+    pe = pefile.PE(fileName)
     strings = str(pe.sections[sectionNum].get_data()[:])
     for word in filterList:
         strings = re.sub(word, '', strings)
@@ -19,7 +19,7 @@ def getSectionStrings(fileName, sectionNum, filterList, isSplit):
 '''
 fileName -> name of file in project folder
 filterList -> list of raw strings to filter out
-isSplit -> split string in list of strings by whitespace
+isSplit -> split string in list of strings by whitespace if True
 '''
 def getAllStrings(fileName, filterList, isSplit):
     pe = pefile.PE(fileName)   
