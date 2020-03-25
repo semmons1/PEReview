@@ -2,30 +2,33 @@ import pefile
 import re
 
 '''
-RETURNS STRINGS FROM A SINGLE SECTION
-    fileName -> name of file in project folder
-    sectionNum -> the section's index number
+fileName -> name of file in project folder
+sectionNum -> the section's index number
+filterList -> list of raw strings to filter out
 '''
-def getSectionStrings(fileName, sectionNum):
-    pe = pefile.PE(fileName)   
-    char_array = str(pe.sections[sectionNum].get_data()[:])
-    secStrs = re.sub(r'\\x\w{2}', '', char_array)
-    #print(secStrs)
-    return secStrs
+def getSectionStrings(fileName, sectionNum, filterList):
+    pe = pefile.PE(fileName)  
+    strings = str(pe.sections[sectionNum].get_data()[:])
+    for word in filterList:
+        strings = re.sub(word, '', strings)
+    print(strings)
+    return strings
 
 '''
-RETURNS STRINGS FROM ALL SECTIONS
-    fileName -> name of file in project folder
+fileName -> name of file in project folder
+filterList -> list of raw strings to filter out
 '''
-def getAllStrings(fileName):
+def getAllStrings(fileName, filterList):
     pe = pefile.PE(fileName)   
-    char_array = ""
+    strings = ""
     for section in pe.sections:
-        char_array += str(section.get_data()[:])
-    fileStrs = re.sub(r'\\x\w{2}', '', char_array)
-    #print(fileStrs)
-    return fileStrs
+        strings += str(section.get_data()[:])
+    for word in filterList:
+        strings = re.sub(word, '', strings)
+    print(strings)
+    return strings
 
 #example
-#getSectionStrings("7z.dll", 1)
-#getAllStrings("7z.dll")
+undesirables = [r'\\x\w{2}', r'\\', r'@']
+getSectionStrings("7z.dll", 1, undesirables)
+#getAllStrings("7z.dll", undesirables)
