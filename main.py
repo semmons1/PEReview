@@ -11,7 +11,7 @@ from importExport import import_Export
 from compileTime import compile_Time
 from packedStatus import packed_Status
 from unpack import unpack
-from findStrings import find_Strings
+from getStrings import getSectionStrings, getAllStrings
 from networkAbility import network_Ability
 
 '''
