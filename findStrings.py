@@ -27,7 +27,7 @@ def find_Strings(portExe): # -> return strings of interest found the executable
             return strings
             
 '''
-This was an example done on a copy of the .dll file in 7zip
+#This was an example done on a copy of the .dll file in 7zip
 pe = pefile.PE("7z.dll")
 foundStrings = find_Strings(pe)
 encoding = 'utf-8'
