@@ -8,9 +8,7 @@ RETURNS STRINGS FROM A SINGLE SECTION
 '''
 def getSectionStrings(fileName, sectionNum):
     pe = pefile.PE(fileName)   
-    chars = str(pe.sections[sectionNum].get_data()[:])
-    char_array = ""
-    for c in chars: char_array += c
+    char_array = str(pe.sections[sectionNum].get_data()[:])
     secStrs = re.sub(r'\\x\w{2}', '', char_array)
     #print(secStrs)
     return secStrs
@@ -21,12 +19,9 @@ RETURNS STRINGS FROM ALL SECTIONS
 '''
 def getAllStrings(fileName):
     pe = pefile.PE(fileName)   
-    chars = ""
-    for section in pe.sections:
-        chars += str(section.get_data()[:])
     char_array = ""
-    for c in chars: 
-        char_array += c
+    for section in pe.sections:
+        char_array += str(section.get_data()[:])
     fileStrs = re.sub(r'\\x\w{2}', '', char_array)
     #print(fileStrs)
     return fileStrs
