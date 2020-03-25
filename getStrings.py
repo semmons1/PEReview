@@ -5,30 +5,35 @@ import re
 fileName -> name of file in project folder
 sectionNum -> the section's index number
 filterList -> list of raw strings to filter out
+isSplit -> split string in list of strings by whitespace
 '''
-def getSectionStrings(fileName, sectionNum, filterList):
+def getSectionStrings(fileName, sectionNum, filterList, isSplit):
     pe = pefile.PE(fileName)  
     strings = str(pe.sections[sectionNum].get_data()[:])
     for word in filterList:
         strings = re.sub(word, '', strings)
+    if isSplit: strings = strings.split()
     print(strings)
     return strings
 
 '''
 fileName -> name of file in project folder
 filterList -> list of raw strings to filter out
+isSplit -> split string in list of strings by whitespace
 '''
-def getAllStrings(fileName, filterList):
+def getAllStrings(fileName, filterList, isSplit):
     pe = pefile.PE(fileName)   
     strings = ""
     for section in pe.sections:
         strings += str(section.get_data()[:])
     for word in filterList:
         strings = re.sub(word, '', strings)
+    if isSplit: strings = strings.split()
     print(strings)
     return strings
 
-#example
-undesirables = [r'\\x\w{2}', r'\\', r'@']
-getSectionStrings("7z.dll", 1, undesirables)
-#getAllStrings("7z.dll", undesirables)
+'''
+undesirables = [r'\\x\w{2}', r'\\', r'\@', r'\#', r'\!', r'\$', r'\%']
+getSectionStrings("7z.dll", 1, undesirables, True)
+getAllStrings("7z.dll", undesirables, True)
+'''
