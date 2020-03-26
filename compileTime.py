@@ -1,11 +1,11 @@
 import datetime
 import time
-def compile_Time(portableExe, fileName):  # -> return string of compile time, if not found return "None found."
+def getCompileTime(portableExe, fileName):  # -> return string of compile time, if not found return "None found."
     contents = ""
 
-    time_Stamp = datetime.datetime.utcfromtimestamp(portableExe.FILE_HEADER.TimeDateStamp)
+    time_Stamp = str(datetime.datetime.utcfromtimestamp(portableExe.FILE_HEADER.TimeDateStamp))
 
-    contents += str("<br /> Compile Time:" + time_Stamp + "<br />") 
+    contents += str("<br /> Compile Time for " + fileName + " -> " + time_Stamp + "<br />") 
 
 
     return contents

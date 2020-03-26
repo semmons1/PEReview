@@ -1,5 +1,6 @@
 import pefile
 #Potential imports
+#Axe this, but thank you Connor!
 def find_Strings(portExe): # -> return strings of interest found the executable
     print([entry.id for entry in portExe.DIRECTORY_ENTRY_RESOURCE.entries])
     strings = list()

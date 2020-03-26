@@ -4,7 +4,7 @@ This function tracks down any import and DLL information associated with a parti
 While it is not common, some executables will have an export directory, and this function will list them for you.
 The "b" before most strings in the given output denotes that this is bytecode information.
 '''
-def import_Export(portableExe, fileName):
+def getImportExport(portableExe, fileName):
     contents = ""
 
     if (hasattr(portableExe, "DIRECTORY_ENTRY_IMPORT")):

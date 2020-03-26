@@ -1,5 +1,6 @@
 import pefile as pf
 import os
+import sys
 import tkinter as tk 
 import subprocess
 
@@ -7,12 +8,11 @@ from tkinter import Tk, StringVar
 from tkinter import filedialog
 from fileSig import file_Sig
 from wrapResults import wrap_Results
-from importExport import import_Export
-from compileTime import compile_Time
-from packedStatus import packed_Status
-from unpack import unpack
+from importExport import getImportExport
+from compileTime import getCompileTime
+from packedStatus import getPackedStatus
 from getStrings import getSectionStrings, getAllStrings
-from networkAbility import network_Ability
+from networkAbility import getNetworkAbility
 
 '''
 The main function in this file has the following tasks:
@@ -27,13 +27,17 @@ display relevant information about each executable being examined.
 def main():
     impExpData = ""
     packedStatusData = ""
-    compileTime = ""
+    compileTimeData = ""
+    packageDir = ""
+
+    packageDir = os.getcwd()
+    
 
     #Open template file in original package directory first,
     #before switching to target directory
 
-    with open('cssTemplate.txt', 'r') as templateFile:
-        wrapper = templateFile.read()
+    #with open('cssTemplate.txt', 'r') as templateFile:
+    #    wrapper = templateFile.read()
 
     # This section allows the user to change the working directory
     # with a simple GUI. Ideally, the user will be in a Windows environment.
@@ -47,19 +51,18 @@ def main():
     folderPath.set(source)
     sourcePath = folderPath.get()
     os.chdir(sourcePath)
-
     for root, subdir, files in os.walk(sourcePath):
         for file in files:
             if file.endswith(".exe"):
                 pe = pf.PE(file)
                 pe.parse_data_directories()
-                impExpData += import_Export(pe, file)
-                packedStatusData += packed_Status(pe, file)
+                impExpData += getImportExport(pe, file)
+                packedStatusData += getPackedStatus(pe, file)
+                compileTimeData += getCompileTime(pe, file)
     
 
     
     #fileSig(dir)
-    #compileTime(dir)
     #based on the result of packedStatus/which packing manager is needed -> unpack(dir)
     #findStrings(dir) -> will need to identify the most out of these other functions, 
     # will likely need to return many strings. 
@@ -70,7 +73,10 @@ def main():
 
     #This function is subject to change, and will take data returned
     #from each module/function to be wrapped in a html file.
-    wrap_Results("Report", impExpData, packedStatusData, wrapper)
+
+    os.chdir(packageDir + "/htmlElements")
+   
+    wrap_Results("pyHome", impExpData, packedStatusData, compileTimeData)
     return
 
 if __name__ == '__main__':

@@ -5,7 +5,7 @@ This function determines if this file is packed with UPX, or another, harder to 
 One of the most common giveaways of a file using UPX, is "SECTION UPX0" being part of the header information.
 The "b" before most strings in the given output denotes that this is bytecode information.
 '''
-def packed_Status(portableExe, fileName):
+def getPackedStatus(portableExe, fileName):
     #Probably too exhaustive, but a comprehensive dictionary of all possible packers that can be used
     #on exe's
     packerSectionNames = {
