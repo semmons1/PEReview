@@ -6,7 +6,7 @@ import subprocess
 
 from tkinter import Tk, StringVar
 from tkinter import filedialog
-#import fileSig
+from fileSig import fileSigMD5, fileSigSHA256
 from wrapResults import wrap_Results
 from importExport import getImportExport
 from compileTime import getCompileTime
