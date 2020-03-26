@@ -2,11 +2,12 @@ import os
 import sys
 import webbrowser
 
-def wrap_Results(fileName, ieInfo, pInfo, timeInfo):
+def wrap_Results(fileName, ieInfo, pInfo, timeInfo, netInfo):
 
 
     setImportExportWrapper("pyIE", ieInfo)
     setPackedwrapper("pyPacked", pInfo)
+    setNetworkAbilityWrapper("pyNetwork", netInfo)
 
     with open('pyHome.txt', 'r') as homeFile:
         wrapper = homeFile.read()
@@ -49,6 +50,20 @@ def setPackedwrapper(fileName, pInfo):
     outFile = open(outFilename, 'w')
 
     rawContentTransfer = wrapper % (pInfo)
+    outFile.write(rawContentTransfer)
+    outFile.close()
+
+    return
+
+
+def setNetworkAbilityWrapper(fileName, nInfo):
+    with open('pyNetwork.txt', 'r') as netFile:
+        wrapper = netFile.read()
+
+    outFilename = fileName + '.html'
+    outFile = open(outFilename, 'w')
+
+    rawContentTransfer = wrapper % (nInfo)
     outFile.write(rawContentTransfer)
     outFile.close()
 

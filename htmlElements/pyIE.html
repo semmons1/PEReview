@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Imports and Exports</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
+.w3-sidebar {
+  z-index: 3;
+  width: 250px;
+  top: 43px;
+  bottom: 0;
+  height: inherit;
+}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+    <a href="pyHome.html" class="w3-bar-item w3-button w3-theme-l1">Home</a>
+  </div>
+</div>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+<div class="w3-main" style="margin-left:250px">
+
+  <div class="w3-row w3-padding-64">
+    <div class="w3-twothird w3-container">
+      <h1 class="w3-text-teal">Import/Export information</h1>
+      <p>7z1806-x64.exe has the following dll's associated with it: <br />VERSION.dll<br /> This dll contains the following imports: <br />0x408140 -> GetFileVersionInfoW<br />0x408144 -> GetFileVersionInfoSizeW<br />0x408148 -> VerQueryValueW<br />ole32.dll<br /> This dll contains the following imports: <br />0x408150 -> CoInitialize<br />0x408154 -> CoCreateInstance<br />USER32.dll<br /> This dll contains the following imports: <br />0x4080f8 -> PeekMessageW<br />0x4080fc -> ExitWindowsEx<br />0x408100 -> GetDlgItemTextW<br />0x408104 -> SetWindowTextW<br />0x408108 -> ShowWindow<br />0x40810c -> MessageBoxW<br />0x408110 -> CreateDialogParamW<br />0x408114 -> LoadIconW<br />0x408118 -> GetMessageW<br />0x40811c -> EnableWindow<br />0x408120 -> GetDlgItem<br />0x408124 -> IsDialogMessageW<br />0x408128 -> TranslateMessage<br />0x40812c -> DispatchMessageW<br />0x408130 -> SetDlgItemTextW<br />0x408134 -> DestroyWindow<br />0x408138 -> SendMessageW<br />ADVAPI32.dll<br /> This dll contains the following imports: <br />0x408000 -> RegSetValueExW<br />0x408004 -> RegCreateKeyExW<br />0x408008 -> OpenProcessToken<br />0x40800c -> LookupPrivilegeValueW<br />0x408010 -> AdjustTokenPrivileges<br />0x408014 -> RegQueryValueExW<br />0x408018 -> RegOpenKeyExW<br />0x40801c -> RegCloseKey<br />SHELL32.dll<br /> This dll contains the following imports: <br />0x4080e8 -> SHGetFolderPathW<br />0x4080ec -> SHBrowseForFolderW<br />0x4080f0 -> SHGetPathFromIDListW<br />MSVCRT.dll<br /> This dll contains the following imports: <br />0x408098 -> memmove<br />0x40809c -> memcmp<br />0x4080a0 -> memcpy<br />0x4080a4 -> memset<br />0x4080a8 -> _exit<br />0x4080ac -> _XcptFilter<br />0x4080b0 -> exit<br />0x4080b4 -> _acmdln<br />0x4080b8 -> __getmainargs<br />0x4080bc -> _initterm<br />0x4080c0 -> __setusermatherr<br />0x4080c4 -> _adjust_fdiv<br />0x4080c8 -> __p__commode<br />0x4080cc -> __p__fmode<br />0x4080d0 -> __set_app_type<br />0x4080d4 -> _except_handler3<br />0x4080d8 -> _controlfp<br />0x4080dc -> free<br />0x4080e0 -> malloc<br />KERNEL32.dll<br /> This dll contains the following imports: <br />0x408024 -> ReadFile<br />0x408028 -> CloseHandle<br />0x40802c -> CreateFileW<br />0x408030 -> FormatMessageW<br />0x408034 -> LocalFree<br />0x408038 -> DeleteFileW<br />0x40803c -> CreateDirectoryW<br />0x408040 -> WriteFile<br />0x408044 -> lstrlenW<br />0x408048 -> GetFileAttributesW<br />0x40804c -> SetFileAttributesW<br />0x408050 -> SetFileTime<br />0x408054 -> MoveFileExW<br />0x408058 -> GetLastError<br />0x40805c -> lstrcatW<br />0x408060 -> SetFilePointer<br />0x408064 -> GetVersionExW<br />0x408068 -> LoadLibraryExW<br />0x40806c -> GetSystemDirectoryW<br />0x408070 -> GetModuleHandleA<br />0x408074 -> GetStartupInfoA<br />0x408078 -> GetModuleFileNameW<br />0x40807c -> GetCommandLineW<br />0x408080 -> lstrcpynW<br />0x408084 -> GetModuleHandleW<br />0x408088 -> GetProcAddress<br />0x40808c -> lstrcpyW<br />0x408090 -> GetCurrentProcess<br />7z1806-x64.exe does not contain any detectable exports. <br />7z.exe has the following dll's associated with it: <br />ole32.dll<br /> This dll contains the following imports: <br />0x408144 -> CoCreateInstance<br />0x408148 -> CoInitialize<br />USER32.dll<br /> This dll contains the following imports: <br />0x4080fc -> PeekMessageW<br />0x408100 -> ExitWindowsEx<br />0x408104 -> GetDlgItemTextW<br />0x408108 -> SetWindowTextW<br />0x40810c -> ShowWindow<br />0x408110 -> MessageBoxW<br />0x408114 -> CreateDialogParamW<br />0x408118 -> LoadIconW<br />0x40811c -> GetMessageW<br />0x408120 -> EnableWindow<br />0x408124 -> GetDlgItem<br />0x408128 -> IsDialogMessageW<br />0x40812c -> TranslateMessage<br />0x408130 -> DispatchMessageW<br />0x408134 -> SetDlgItemTextW<br />0x408138 -> DestroyWindow<br />0x40813c -> SendMessageW<br />ADVAPI32.dll<br /> This dll contains the following imports: <br />0x408000 -> RegSetValueExW<br />0x408004 -> OpenProcessToken<br />0x408008 -> LookupPrivilegeValueW<br />0x40800c -> AdjustTokenPrivileges<br />0x408010 -> RegQueryValueExW<br />0x408014 -> RegOpenKeyExW<br />0x408018 -> RegCloseKey<br />0x40801c -> RegCreateKeyExW<br />SHELL32.dll<br /> This dll contains the following imports: <br />0x4080ec -> SHGetFolderPathW<br />0x4080f0 -> SHBrowseForFolderW<br />0x4080f4 -> SHGetPathFromIDListW<br />MSVCRT.dll<br /> This dll contains the following imports: <br />0x40809c -> _XcptFilter<br />0x4080a0 -> exit<br />0x4080a4 -> _acmdln<br />0x4080a8 -> __getmainargs<br />0x4080ac -> _initterm<br />0x4080b0 -> __setusermatherr<br />0x4080b4 -> _adjust_fdiv<br />0x4080b8 -> __p__commode<br />0x4080bc -> __p__fmode<br />0x4080c0 -> __set_app_type<br />0x4080c4 -> _except_handler3<br />0x4080c8 -> _controlfp<br />0x4080cc -> memset<br />0x4080d0 -> memcpy<br />0x4080d4 -> memcmp<br />0x4080d8 -> memmove<br />0x4080dc -> malloc<br />0x4080e0 -> free<br />0x4080e4 -> _exit<br />KERNEL32.dll<br /> This dll contains the following imports: <br />0x408024 -> CloseHandle<br />0x408028 -> CreateFileW<br />0x40802c -> FormatMessageW<br />0x408030 -> LocalFree<br />0x408034 -> ReadFile<br />0x408038 -> CreateDirectoryW<br />0x40803c -> GetSystemDirectoryW<br />0x408040 -> LoadLibraryW<br />0x408044 -> GetModuleFileNameW<br />0x408048 -> lstrlenW<br />0x40804c -> GetFileAttributesW<br />0x408050 -> WriteFile<br />0x408054 -> SetFilePointer<br />0x408058 -> GetVersionExW<br />0x40805c -> LoadLibraryExW<br />0x408060 -> GetModuleHandleA<br />0x408064 -> GetStartupInfoA<br />0x408068 -> DeleteFileW<br />0x40806c -> SetFileAttributesW<br />0x408070 -> SetFileTime<br />0x408074 -> MoveFileExW<br />0x408078 -> GetLastError<br />0x40807c -> GetCommandLineW<br />0x408080 -> lstrcpynW<br />0x408084 -> GetModuleHandleW<br />0x408088 -> GetProcAddress<br />0x40808c -> GetCurrentProcess<br />0x408090 -> lstrcpyW<br />0x408094 -> lstrcatW<br />7z.exe does not contain any detectable exports. <br /></p>
+    </div>
+  </div>
+
+  <footer id="myFooter">
+    <div class="w3-container w3-theme-l2 w3-padding-32">
+      <h4>Footer</h4>
+    </div>
+
+    <div class="w3-container w3-theme-l1">
+      <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+    </div>
+  </footer>
+
+<!-- END MAIN -->
+</div>
+
+<script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+    overlayBg.style.display = "none";
+  } else {
+    mySidebar.style.display = 'block';
+    overlayBg.style.display = "block";
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+  mySidebar.style.display = "none";
+  overlayBg.style.display = "none";
+}
+</script>
+
+</body>
+</html>

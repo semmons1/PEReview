@@ -6,7 +6,7 @@ import subprocess
 
 from tkinter import Tk, StringVar
 from tkinter import filedialog
-from fileSig import file_Sig
+#import fileSig
 from wrapResults import wrap_Results
 from importExport import getImportExport
 from compileTime import getCompileTime
@@ -28,6 +28,8 @@ def main():
     impExpData = ""
     packedStatusData = ""
     compileTimeData = ""
+    rawStringData = ""
+    networkAbilityData = ""
     packageDir = ""
 
     packageDir = os.getcwd()
@@ -59,6 +61,10 @@ def main():
                 impExpData += getImportExport(pe, file)
                 packedStatusData += getPackedStatus(pe, file)
                 compileTimeData += getCompileTime(pe, file)
+                rawStringData += getAllStrings(file, False) #Make note of the .split() function
+                networkAbilityData += getNetworkAbility(file, rawStringData)
+
+
     
 
     
@@ -76,7 +82,7 @@ def main():
 
     os.chdir(packageDir + "/htmlElements")
    
-    wrap_Results("pyHome", impExpData, packedStatusData, compileTimeData)
+    wrap_Results("pyHome", impExpData, packedStatusData, compileTimeData, networkAbilityData)
     return
 
 if __name__ == '__main__':

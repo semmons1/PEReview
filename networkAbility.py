@@ -4,15 +4,17 @@ import re
 '''
 string -> string possibly containing urls or ip addresses
 '''
-def getNetworkAbility(string):
+def getNetworkAbility(fileName, string):
+    contents = ""
     extractor = URLExtract()
-    urlFindings = extractor.find_urls(string)
-    ipFindings = re.findall("(\d{1,3}\.){3}\d{1,3}", string)
-    scorecard = len(urlFindings) + len(ipFindings)
-    #print('Network ability scorecard:', scorecard)
-    #print('Potential urls:', urlFindings)
-    #print('Potential ip addresses:', ipFindings)
-    return scorecard
+    urlFindings = str(extractor.find_urls(string))
+    ipFindings = str(re.findall("(\d{1,3}\.){3}\d{1,3}", string))
+    #Count each occurence of a complete IP address or URL with .split()
+    scorecard = len(urlFindings.split()) + len(ipFindings.split())
+    contents += ("Findings for " + fileName + ":<br/> Network analysis findings: <br />" + "Potential URL's: <br />"
+    + urlFindings + "<br /> Potential IP Addresses" + ipFindings + "<br /> Overall Scorecard is "
+    + str(scorecard) + "<br />")
+    return contents
 
 #network ability examples
 #strings = getSectionStrings("7z.dll", 1, undesirables, False)

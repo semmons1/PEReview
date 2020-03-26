@@ -14,7 +14,7 @@ If you prefer using Python's package manager:<br/>
 `pip install <a_module_name>`<br/>
 Also, this package is designed to run with **Python 3.7**, so ensure that you are up-to-date with your Python version.
 ## Running The Package
-Start by opening a terminal or shell of your choice, and `cd` into the directory that you have placed this package in. Once in, type<br/> `python main.py`.<br/> Upon startup, you will be asked to choose the directory that holds a/some suspicious files. Once selected, the scripts will take care of everything, wait patiently for a new webpage to be generate.
+Start by opening a terminal or shell of your choice, and `cd` into the directory that you have placed this package in. Once in, type<br/> `python main.py`.<br/> Upon startup, you will be asked to choose the directory that holds a/some suspicious files. Once selected, the scripts will take care of everything, wait patiently for a new webpage to be generated.
 ### Examples
 Coming soon lol
 
