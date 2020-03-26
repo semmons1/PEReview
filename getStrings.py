@@ -21,13 +21,12 @@ fileName -> name of file in project folder
 filterList -> list of raw strings to filter out
 isSplit -> split string in list of strings by whitespace if True
 '''
-def getAllStrings(fileName, isSplit):
-    undesirables = [r'\\x\w{2}', r'\\', r'\@', r'\#', r'\!', r'\$', r'\%']
+def getAllStrings(fileName, filterList, isSplit):
     pe = pefile.PE(fileName)   
     strings = ""
     for section in pe.sections:
         strings += str(section.get_data()[:])
-    for word in undesirables:
+    for word in filterList:
         strings = re.sub(word, '', strings)
     #.split() can be used if we wish to return an array instead. For now,
     #we only want raw string information.

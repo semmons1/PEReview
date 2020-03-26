@@ -61,12 +61,8 @@ def main():
                 impExpData += getImportExport(pe, file)
                 packedStatusData += getPackedStatus(pe, file)
                 compileTimeData += getCompileTime(pe, file)
-                rawStringData += getAllStrings(file, False) #Make note of the .split() function
+                rawStringData += getAllStrings(file, [], False)
                 networkAbilityData += getNetworkAbility(file, rawStringData)
-
-
-    
-
     
     #fileSig(dir)
     #based on the result of packedStatus/which packing manager is needed -> unpack(dir)
