@@ -5,14 +5,15 @@ import tkinter as tk
 import subprocess
 
 from tkinter import Tk, StringVar
-from tkinter import filedialog
+from tkinter import filedialog, messagebox
 from fileSig import fileSigMD5, fileSigSHA256
-from wrapResults import wrap_Results
+from wrapResults import wrapResults
 from importExport import getImportExport
 from compileTime import getCompileTime
 from packedStatus import getPackedStatus
 from getStrings import getSectionStrings, getAllStrings
 from networkAbility import getNetworkAbility
+from riskAnalysis import getRiskAnalysis
 
 '''
 The main function in this file has the following tasks:
@@ -30,10 +31,10 @@ def main():
     compileTimeData = ""
     rawStringData = ""
     networkAbilityData = ""
+    riskAnalysisData = ""
     packageDir = ""
 
     packageDir = os.getcwd()
-    
 
     #Open template file in original package directory first,
     #before switching to target directory
@@ -52,34 +53,36 @@ def main():
     source = filedialog.askdirectory(initialdir = "/", title = "Select Desired Directory")
     folderPath.set(source)
     sourcePath = folderPath.get()
-    os.chdir(sourcePath)
-    for root, subdir, files in os.walk(sourcePath):
-        for file in files:
-            if file.endswith(".exe"):
-                pe = pf.PE(file)
-                pe.parse_data_directories()
-                impExpData += getImportExport(pe, file)
-                packedStatusData += getPackedStatus(pe, file)
-                compileTimeData += getCompileTime(pe, file)
-                rawStringData += getAllStrings(file, [], False)
-                networkAbilityData += getNetworkAbility(file, rawStringData)
-    
-    #fileSig(dir)
-    #based on the result of packedStatus/which packing manager is needed -> unpack(dir)
-    #findStrings(dir) -> will need to identify the most out of these other functions, 
-    # will likely need to return many strings. 
-    # Based on the results of findStrings -> networkAbility(dir)
-    #
-    #Beyond these function calls, main should be fairly minimal, with perhaps some additional
-    #error catch blocks included after function calls.
+    if os.path.exists(sourcePath) == True and sourcePath != "/":
+        os.chdir(sourcePath)
+        for root, subdir, files in os.walk(sourcePath):
+            for file in files:
+                if file.endswith(".exe"):
+                    pe = pf.PE(file)
+                    pe.parse_data_directories()
+                    compileTimeData += getCompileTime(pe, file)
+                    md5Signature = fileSigMD5(file, 65536)
+                    impExpData += getImportExport(pe, file)
+                    packedStatusData += getPackedStatus(pe, file)
+                    rawStringData += getAllStrings(file, [], False)
+                    networkAbilityData += getNetworkAbility(file, rawStringData)
+                    riskAnalysisData += getRiskAnalysis(file, md5Signature) #Expand functionality to make decisions based on string info from other variables. For now, only cross references with VirusTotal. 
+
 
     #This function is subject to change, and will take data returned
     #from each module/function to be wrapped in a html file.
 
-    os.chdir(packageDir + "/htmlElements")
+        os.chdir(packageDir + "/htmlElements")
    
-    wrap_Results("pyHome", impExpData, packedStatusData, compileTimeData, networkAbilityData)
-    return
+        wrapResults("pyHome", impExpData, packedStatusData, compileTimeData, networkAbilityData, riskAnalysisData)
+        return
+    else:
+        root = Tk()
+        root.withdraw()
+        messagebox.showinfo("Invalid Directory", "Please check your directory, and try again.")
+        SystemExit
+
+
 
 if __name__ == '__main__':
     main()

@@ -11,7 +11,7 @@ def getNetworkAbility(fileName, string):
     ipFindings = str(re.findall("(\d{1,3}\.){3}\d{1,3}", string))
     #Count each occurence of a complete IP address or URL with .split()
     scorecard = len(urlFindings.split()) + len(ipFindings.split())
-    contents += ("Findings for " + fileName + ":<br/> Network analysis findings: <br />" + "Potential URL's: <br />"
+    contents = ("Findings for " + fileName + ":<br/> Network analysis findings: <br />" + "Potential URL's: <br />"
     + urlFindings + "<br /> Potential IP Addresses" + ipFindings + "<br /> Overall Scorecard is "
     + str(scorecard) + "<br />")
     return contents
