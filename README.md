@@ -3,7 +3,8 @@ A Python project designed by Binary Analysis students, aimed specifically at ana
 ## Preliminary requirements
 This package requires the installation of the following modules:<br/>
 **pefile**<br/>
-**urlextract** NOTE: for urlextract  use `pip install urlextract` 
+**urlextract**<br/>
+**NOTE:** for urlextract  use `pip install urlextract`<br/>
 **idna**<br/>
 **uritools**<br/>
 **appdirs**<br/>
