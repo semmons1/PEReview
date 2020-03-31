@@ -32,7 +32,6 @@ This package utilizes the API key of a poor student who uses the community addit
 ## Running The Package
 Start by opening a terminal or shell of your choice, and `cd` into the directory that you have placed this package in. Once in, type<br/> `python main.py`.<br/> Upon startup, you will be asked to choose the directory that holds a/some suspicious files. Once selected, the scripts will take care of everything, wait patiently for a new webpage to be generated.
 ### Examples
-./pictures/image.png
 ### Running From The Command Line:
 ![alt text](./docs/pyTerminal.jpg)
 ### Selecting Your Desired Directory:
