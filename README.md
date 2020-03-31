@@ -1,20 +1,21 @@
-
-.-------------------------.
-|         .:::::.         |
-|        :: ::::::        |
-|        ````:::::        |
-|  .:::::::::::::: iiii.  |
-| :::::::::::::::: iiiiii |
-| :::::: ..........iiiiii |
-|  ':::: iiiiiiiiiiiiii'  |
-|        iiiii....        |
-|        iiiiii ii        |
-|         'iiiii'         |
-'-------------------------'
-                           _   
- _   __  _   __  _     _  (_)  __  __    ____    __
-|_| |__ |_| |__  \\   //  | | |__  \ \  / /\ \  / /
-|   |__ |\  |__   \\_//   |_| |__   \_\/ /  \_\/ /
+`
+.-------------------------.<br/>
+|         .:::::.         |<br/>
+|        :: ::::::        |<br/>
+|        ````:::::        |<br/>
+|  .:::::::::::::: iiii.  |<br/>
+| :::::::::::::::: iiiiii |<br/>
+| :::::: ..........iiiiii |<br/>
+|  ':::: iiiiiiiiiiiiii'  |<br/>
+|        iiiii....        |<br/>
+|        iiiiii ii        |<br/>
+|         'iiiii'         |<br/>
+'-------------------------'<br/>
+                           _   <br/>
+ _   __  _   __  _     _  (_)  __  __    ____    __<br/>
+|_| |__ |_| |__  \\   //  | | |__  \ \  / /\ \  / /<br/>
+|   |__ |\  |__   \\_//   |_| |__   \_\/ /  \_\/ /<br/>
+`
 
 # PEReview
 A Python project designed by Binary Analysis students, aimed specifically at analyzing suspicious .exe files. **Please** read the information below before you try running this package.  
