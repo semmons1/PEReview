@@ -1,15 +1,27 @@
+`
+.-------------------------.
+|         .:::::.         |
+|        :: ::::::        |
+|        ````:::::        |
+|  .:::::::::::::: iiii.  |
+| :::::::::::::::: iiiiii |
+| :::::: ..........iiiiii |
+|  ':::: iiiiiiiiiiiiii'  |
+|        iiiii....        |
+|        iiiiii ii        |
+|         'iiiii'         |
+'-------------------------'
+                           _   
+ _   __  _   __  _     _  (_)  __  __    ____    __
+|_| |__ |_| |__  \\   //  | | |__  \ \  / /\ \  / /
+|   |__ |\  |__   \\_//   |_| |__   \_\/ /  \_\/ /
+`
 # PEReview
 A Python project designed by Binary Analysis students, aimed specifically at analyzing suspicious .exe files. **Please** read the information below before you try running this package.  
 ## Preliminary requirements
-This package requires the installation of the following modules:<br/>
-**pefile**<br/>
-**urlextract**<br/>
-**NOTE:** for urlextract  use `pip install urlextract`<br/>
-**idna**<br/>
-**uritools**<br/>
-**appdirs**<br/>
-**requests**<br/>
-These modules can/should be installed through the following examples:<br/>
+This package requires the installation of some dependencies, please run the following command:<br/>
+`pip install -r requirements.txt`
+The modules listed in "requirements.txt" can also be installed independently through the following examples:<br/>
 If you prefer using Anaconda:<br/>
 `conda install -c conda-forge <a_module_name>`<br/>
 If you prefer using Python's package manager:<br/>

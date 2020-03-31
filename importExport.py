@@ -1,10 +1,11 @@
-#Potential imports here
+
 '''
-This function tracks down any import and DLL information associated with a particular executable.
-While it is not common, some executables will have an export directory, and this function will list them for you.
-The "b" before most strings in the given output denotes that this is bytecode information.
+This function tracks down any and all imports/exports associated with a .exe file.
+This information is then returned in string form, with HTML formatters injected.
+@contents, Establish empty string variable, each time this function is called.
 '''
 def getImportExport(portableExe, fileName):
+    
     contents = ""
 
     if (hasattr(portableExe, "DIRECTORY_ENTRY_IMPORT")):

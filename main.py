@@ -4,26 +4,27 @@ import sys
 import tkinter as tk 
 import subprocess
 
-from tkinter import Tk, StringVar
-from tkinter import filedialog, messagebox
+#External imports
+from tkinter import Tk, StringVar, filedialog, messagebox
+
+#Internal imports
 from fileSig import fileSigMD5, fileSigSHA256
-from wrapResults import wrapResults
-from importExport import getImportExport
 from compileTime import getCompileTime
+from importExport import getImportExport
 from packedStatus import getPackedStatus
 from getStrings import getSectionStrings, getAllStrings
 from networkAbility import getNetworkAbility
 from riskAnalysis import getRiskAnalysis, getMatchCases
+from wrapResults import wrapResults
 
 '''
 The main function in this file has the following tasks:
-@currentWorkingDir, the object that your current working directory is assigned to. 
-@pe will pass file/directory information to relevant file analysis functions.
-This tool should be in the same directory as potentially malicious executables.
-This allows for the OS module to scan your directory for all .exe files.
-This function should also contain checks (conditional, try blocks) for files that don't exist or are malformed.
-After checks, parse the data directories, and ship them off to relevant functions. These functions will 
-display relevant information about each executable being examined.
+Establish empty string variables that will be exported to 'wrapResults'. These variables contain raw
+information extracted from .exe files, and are hybridized with HTML formatting. Do not try to read 
+raw string information in these files.
+Establish a target directory from which information is read. Tkinter helps with this.
+Run through this target directory, for each .exe file, execute the auxiliary functions to collect information.
+Once all .exe files have been read, export all information to be wrapped into a web report.
 '''
 def main():
     impExpData = ""
@@ -36,12 +37,6 @@ def main():
     packageDir = ""
 
     packageDir = os.getcwd()
-
-    #Open template file in original package directory first,
-    #before switching to target directory
-
-    #with open('cssTemplate.txt', 'r') as templateFile:
-    #    wrapper = templateFile.read()
 
     # This section allows the user to change the working directory
     # with a simple GUI. Ideally, the user will be in a Windows environment.
@@ -70,13 +65,11 @@ def main():
                     riskAnalysisData += getRiskAnalysis(file, md5Signature) 
                     matchCaseData += getMatchCases(file, rawStringData)
 
-    #This function is subject to change, and will take data returned
-    #from each module/function to be wrapped in a html file.
-
         os.chdir(packageDir + "/htmlElements")
    
         wrapResults("pyHome", impExpData, packedStatusData, compileTimeData, networkAbilityData, riskAnalysisData, matchCaseData)
         return
+        
     else:
         root = Tk()
         root.withdraw()

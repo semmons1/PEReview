@@ -2,6 +2,10 @@ import requests
 import os
 import re
 
+'''
+This function takes in raw data from both fileSig, and getStrings, and performs a simple
+risk analysis based on the findings of these functions. Information is returned as string, to be wrapped.
+'''
 def getRiskAnalysis(fileName, hash):
 
     contents = ""

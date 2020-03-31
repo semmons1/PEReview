@@ -2,13 +2,19 @@ import os
 import sys
 import webbrowser
 
+'''
+This function takes in raw data from almost every auxiliary function, and places that information in
+it's appropriate HTML document. These documents are then automatically executed by webbrowser.
+These documents are a combination of HTML, CSS (provided by w3schools), and Python string data.
+'''
 def wrapResults(fileName, ieInfo, pInfo, timeInfo, netInfo, analysisInfo, matchCaseInfo):
 
-
+    #Data destined for other webpages
     setImportExportWrapper("pyIE", ieInfo)
     setPackedwrapper("pyPacked", pInfo)
     setNetworkAbilityWrapper("pyNetwork", netInfo)
-
+    
+    #Data destined for the homepage
     with open('pyHome.txt', 'r') as homeFile:
         wrapper = homeFile.read()
 

@@ -1,10 +1,11 @@
 from urlextract import URLExtract
 import re
-# Required modules: idna, uritools, appdirs
+
 '''
 string -> string possibly containing urls or ip addresses
 '''
 def getNetworkAbility(fileName, string):
+    
     contents = ""
     extractor = URLExtract()
     urlFindings = str(extractor.find_urls(string))
@@ -14,6 +15,7 @@ def getNetworkAbility(fileName, string):
     contents = ("<b>Findings for " + fileName + ":</b><br/> <p>Network analysis findings: <br />" + "Potential URL's: <br />"
     + urlFindings + "<br /> Potential IP Addresses" + ipFindings + "<br /> Overall Scorecard is "
     + str(scorecard) + "<br /></p>")
+
     return contents
 
 #network ability examples
