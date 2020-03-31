@@ -13,7 +13,7 @@ from compileTime import getCompileTime
 from packedStatus import getPackedStatus
 from getStrings import getSectionStrings, getAllStrings
 from networkAbility import getNetworkAbility
-from riskAnalysis import getRiskAnalysis
+from riskAnalysis import getRiskAnalysis, getMatchCases
 
 '''
 The main function in this file has the following tasks:
@@ -32,6 +32,7 @@ def main():
     rawStringData = ""
     networkAbilityData = ""
     riskAnalysisData = ""
+    matchCaseData = ""
     packageDir = ""
 
     packageDir = os.getcwd()
@@ -66,15 +67,15 @@ def main():
                     packedStatusData += getPackedStatus(pe, file)
                     rawStringData += getAllStrings(file, [], False)
                     networkAbilityData += getNetworkAbility(file, rawStringData)
-                    riskAnalysisData += getRiskAnalysis(file, md5Signature) #Expand functionality to make decisions based on string info from other variables. For now, only cross references with VirusTotal. 
-
+                    riskAnalysisData += getRiskAnalysis(file, md5Signature) 
+                    matchCaseData += getMatchCases(file, rawStringData)
 
     #This function is subject to change, and will take data returned
     #from each module/function to be wrapped in a html file.
 
         os.chdir(packageDir + "/htmlElements")
    
-        wrapResults("pyHome", impExpData, packedStatusData, compileTimeData, networkAbilityData, riskAnalysisData)
+        wrapResults("pyHome", impExpData, packedStatusData, compileTimeData, networkAbilityData, riskAnalysisData, matchCaseData)
         return
     else:
         root = Tk()

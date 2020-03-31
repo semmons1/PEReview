@@ -8,7 +8,7 @@ def getImportExport(portableExe, fileName):
     contents = ""
 
     if (hasattr(portableExe, "DIRECTORY_ENTRY_IMPORT")):
-        contents += (fileName + " has the following dll's associated with it: <br />")
+        contents += ("<b><p>" + fileName + " has the following imports/dll's associated with it: <br /></p></b>")
         for entry in portableExe.DIRECTORY_ENTRY_IMPORT:
             contents += str(entry.dll, 'utf-8')
             contents += str("<br /> This dll contains the following imports: <br />")
@@ -17,10 +17,10 @@ def getImportExport(portableExe, fileName):
                 tempName = str(imp.name, 'utf-8')
                 contents += str(tempAddress + " -> " + tempName + "<br />")
     else:
-        contents += str(fileName + " does not contain any detectable imports. <br />")
+        contents += str("<b>" + fileName + " does not contain any detectable imports. <br /></b>")
 
     if (hasattr(portableExe, "DIRECTORY_ENTRY_EXPORT")):
-        contents += (fileName + " has the following exports: <br />")
+        contents += ("<b><p>" + fileName + " has the following exports: <br /></p></b>")
         for exp in portableExe.DIRECTORY_ENTRY_EXPORT.symbols:
             tempAddressExp = str(hex(portableExe.OPTIONAL_HEADER.ImageBase + exp.address))
             tempNameExp = str(exp.name, 'utf-8')
@@ -28,6 +28,6 @@ def getImportExport(portableExe, fileName):
             contents += str(tempAddressExp + " -> " + tempNameExp + " ordered @ " + tempOrdinal + "<br />")
 
     else:
-       contents += str(fileName + " does not contain any detectable exports. <br />")
+       contents += str("<b>" + fileName + " does not contain any detectable exports. <br /></b>")
     
     return contents

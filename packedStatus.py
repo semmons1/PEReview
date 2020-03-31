@@ -36,9 +36,9 @@ def getPackedStatus(portableExe, fileName):
     for section in portableExe.sections:
         secName = GetCleanSectionName(section)
         if (secName in packerSectionNames):
-            contents += str(fileName + " contains '" + secName + "', which matches known packer: " + packerSectionNames[secName] + "<br />")  
+            contents += str("<b>" + fileName + "</b>" + " contains '" + secName + "', which matches known packer: " + packerSectionNames[secName] + "<br />")  
         else:
-            contents += str(fileName + " section #" + "%d" + " is identified as " + secName  + "<br />") % counter
+            contents += str("<b>" + fileName + "</b>" + " section #" + "%d" + " is identified as " + secName  + "<br />") % counter
             counter+=1
     return contents    
 

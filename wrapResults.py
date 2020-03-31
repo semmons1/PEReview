@@ -2,7 +2,7 @@ import os
 import sys
 import webbrowser
 
-def wrapResults(fileName, ieInfo, pInfo, timeInfo, netInfo, analysisInfo):
+def wrapResults(fileName, ieInfo, pInfo, timeInfo, netInfo, analysisInfo, matchCaseInfo):
 
 
     setImportExportWrapper("pyIE", ieInfo)
@@ -15,11 +15,11 @@ def wrapResults(fileName, ieInfo, pInfo, timeInfo, netInfo, analysisInfo):
     outFilename = fileName + '.html'
     outFile = open(outFilename, 'w')
 
-    rawContentTransfer = wrapper % (analysisInfo, timeInfo)
+    rawContentTransfer = wrapper % (matchCaseInfo, analysisInfo, timeInfo)
     outFile.write(rawContentTransfer)
     outFile.close()
 
-    print("File written!")
+    print("Opening page now...")
 
     path = os.path.abspath(outFilename)
     url = 'file://' + path
