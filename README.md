@@ -1,4 +1,5 @@
-
+`
+<!-- language: lang-none -->
 .-------------------------.<br/>
 |         .:::::.         |<br/>
 |        :: ::::::        |<br/>
@@ -15,7 +16,7 @@
  _   __  _   __  _     _  (_)  __  __    ____    __<br/>
 |_| |__ |_| |__  \\   //  | | |__  \ \  / /\ \  / /<br/>
 |   |__ |\  |__   \\_//   |_| |__   \_\/ /  \_\/ /<br/>
-
+`
 
 # PEReview
 A Python project designed by Binary Analysis students, aimed specifically at analyzing suspicious .exe files. **Please** read the information below before you try running this package.  
