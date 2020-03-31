@@ -1,8 +1,6 @@
 pefile
-re
 urlextract
 idna
 uritools
 appdirs
 requests
-tkinter
